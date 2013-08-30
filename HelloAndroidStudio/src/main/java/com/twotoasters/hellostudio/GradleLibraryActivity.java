@@ -25,18 +25,21 @@ public class GradleLibraryActivity extends Activity implements PullToRefreshAtta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gradle);
 
-        setupPullToRefresh();
+        pullToRefreshAttacher = setupPullToRefresh();
     }
 
-    protected void setupPullToRefresh() {
-        // Create a PullToRefreshAttacher instance
-        pullToRefreshAttacher = PullToRefreshAttacher.get(this);
+    protected PullToRefreshAttacher setupPullToRefresh() {
+        if (pullToRefreshAttacher == null) {
+            // Create a PullToRefreshAttacher instance
+            PullToRefreshAttacher pullToRefreshAttacher = PullToRefreshAttacher.get(this);
 
-        // Retrieve the PullToRefreshLayout from the content view
-        PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
+            // Retrieve the PullToRefreshLayout from the content view
+            PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
 
-        // Give the PullToRefreshAttacher to the PullToRefreshLayout, along with a refresh listener.
-        ptrLayout.setPullToRefreshAttacher(pullToRefreshAttacher, this);
+            // Give the PullToRefreshAttacher to the PullToRefreshLayout, along with a refresh listener.
+            ptrLayout.setPullToRefreshAttacher(pullToRefreshAttacher, this);
+        }
+        return pullToRefreshAttacher;
     }
 
     @Override

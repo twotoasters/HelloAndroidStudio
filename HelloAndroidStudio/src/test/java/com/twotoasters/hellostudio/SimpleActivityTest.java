@@ -1,31 +1,29 @@
 package com.twotoasters.hellostudio;
 
-import android.app.Activity;
-import android.view.View.MeasureSpec;
-import android.widget.ImageView;
-
-import com.twotoasters.hellostudio.MainActivity;
-
+import org.fest.assertions.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 
 import static org.fest.assertions.api.ANDROID.assertThat;
 
 @RunWith(RobolectricGradleTestRunner.class)
-public class MainActivityTest {
+public class SimpleActivityTest {
 
-    MainActivity activity;
+    SimpleActivity activity;
 
     @Before public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
-        activity = new MainActivity();
+        SimpleActivity activity = new SimpleActivity();
         activity.onCreate(null);
     }
 
     @Test public void testNotNull() {
         assertThat(activity).isNotNull();
+    }
+
+    @Test public void testGetCurrentTimestamp() {
+        long timestamp = activity.getCurrentTimestamp();
+        Assertions.assertThat(timestamp).isGreaterThan(0);
     }
 }

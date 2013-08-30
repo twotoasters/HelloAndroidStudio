@@ -8,18 +8,18 @@ import static android.test.ViewAsserts.assertOnScreen;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-import com.twotoasters.hellostudio.MainActivity;
+import com.twotoasters.hellostudio.MavenLibraryActivity;
 
-public class MainTest extends ActivityInstrumentationTestCase2<MainActivity> {
+public class MavenActivityInstrumentTest extends ActivityInstrumentationTestCase2<MavenLibraryActivity> {
 
-    private MainActivity activity;
+    private MavenLibraryActivity activity;
     private TextView textView;
     private ImageView imageView;
 
     // Be careful about letting the IDE create the constructor.  As of this writing,
     // it creates a constructor that's compiles cleanly but doesn't run any tests
-    public MainTest() {
-        super(MainActivity.class);
+    public MavenActivityInstrumentTest() {
+        super(MavenLibraryActivity.class);
     }
 
     protected void setUp() throws Exception {
@@ -32,6 +32,7 @@ public class MainTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     // Methods whose names are prefixed with test will automatically be run
     public void testTextView() {
+        assertThat(textView).isNotNull();
         assertOnScreen(activity.getWindow().getDecorView(), textView);
     }
 
@@ -40,6 +41,7 @@ public class MainTest extends ActivityInstrumentationTestCase2<MainActivity> {
     }
 
     public void testImageView() {
-        assertThat(imageView).isNull();
+        assertThat(imageView).isNotNull();
+        assertOnScreen(activity.getWindow().getDecorView(), imageView);
     }
 }
