@@ -3,6 +3,7 @@
 
     <string name="app_name">Hello Android Studio</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello Android Studio!</string>
+    <string name="title_activity_blank">BlankActivity</string>
 
 </resources>

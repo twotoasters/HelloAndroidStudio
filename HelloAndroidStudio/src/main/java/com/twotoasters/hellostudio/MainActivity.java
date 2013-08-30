@@ -1,5 +1,6 @@
 package com.twotoasters.hellostudio;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -23,6 +24,13 @@ public class MainActivity extends Activity implements PullToRefreshAttacher.OnRe
         Picasso.with(this)
                 .load(getImageUrl())
                 .into(getImageView(R.id.imageView));
+
+        getImageView(R.id.imageView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BlankActivity.class));
+            }
+        });
 
         setupPullToRefresh();
     }
