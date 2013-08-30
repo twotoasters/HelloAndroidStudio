@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ import java.util.List;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
 
     private static final List<ActivityInfo> activitiesInfo = Arrays.asList(
             new ActivityInfo(SimpleActivity.class, R.string.activity_simple),
@@ -29,13 +30,22 @@ public class MainActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         String[] titles = getActivityTitles();
-        setListAdapter(new ArrayAdapter<String>(
+
+        ListView list = (ListView) findViewById(android.R.id.list);
+        list.setAdapter(new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, android.R.id.text1, titles));
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onListItemClick(parent, view, position, id);
+            }
+        });
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    protected void onListItemClick(AdapterView<?> parent, View view, int position, long id) {
         Class<? extends Activity> clazz = activitiesInfo.get(position).activityClass;
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
