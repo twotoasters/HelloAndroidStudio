@@ -1,90 +1,53 @@
 package com.twotoasters.hellostudio;
 
+import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.Arrays;
+import java.util.List;
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 
-public class MainActivity extends Activity implements PullToRefreshAttacher.OnRefreshListener {
+public class MainActivity extends ListActivity {
 
-    private PullToRefreshAttacher pullToRefreshAttacher;
+    private static final List<ActivityInfo> activitiesInfo = Arrays.asList(
+            new ActivityInfo(SimpleActivity.class, R.string.activity_simple),
+            new ActivityInfo(MavenLibraryActivity.class, R.string.activity_maven),
+            new ActivityInfo(GradleLibraryActivity.class, R.string.activity_gradle));
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Picasso.with(this)
-                .load(getImageUrl())
-                .into(getImageView(R.id.imageView));
-
-        getImageView(R.id.imageView).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BlankActivity.class));
-            }
-        });
-
-        setupPullToRefresh();
-    }
-
-    protected void setupPullToRefresh() {
-        // Create a PullToRefreshAttacher instance
-        pullToRefreshAttacher = PullToRefreshAttacher.get(this);
-
-        // Retrieve the PullToRefreshLayout from the content view
-        PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
-
-        // Give the PullToRefreshAttacher to the PullToRefreshLayout, along with a refresh listener.
-        ptrLayout.setPullToRefreshAttacher(pullToRefreshAttacher, this);
+        String[] titles = getActivityTitles();
+        setListAdapter(new ArrayAdapter<String>(
+                this, android.R.layout.simple_list_item_1, android.R.id.text1, titles));
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Class<? extends Activity> clazz = activitiesInfo.get(position).activityClass;
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
     }
 
-    protected String getImageUrl() {
-        return "http://www.gravatar.com/avatar/aaa0d355f3b4971c57396d5d51861f44?size=250";
+    protected String[] getActivityTitles() {
+        String[] result = new String[activitiesInfo.size()];
+        int i = 0;
+        for (ActivityInfo info : activitiesInfo) {
+            result[i++] = getString(info.titleResourceId);
+        }
+        return result;
     }
 
-    private ImageView getImageView(int resId) {
-        return (ImageView) findViewById(resId);
-    }
-
-    @Override
-    public void onRefreshStarted(View view) {
-        /**
-         * Simulate Refresh with 4 seconds sleep
-         */
-        new AsyncTask<Void, Void, Void>() {
-
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-                    Thread.sleep(4000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-                super.onPostExecute(result);
-
-                // Notify PullToRefreshAttacher that the refresh has finished
-                pullToRefreshAttacher.setRefreshComplete();
-            }
-        }.execute();
-    }
 }
