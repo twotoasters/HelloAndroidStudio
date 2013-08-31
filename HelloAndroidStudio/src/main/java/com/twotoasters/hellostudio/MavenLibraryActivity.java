@@ -12,9 +12,7 @@ public class MavenLibraryActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maven);
-        Picasso.with(this)
-                .load(getImageUrl())
-                .into(getImageView(R.id.imageView));
+        loadImage();
     }
 
     protected String getImageUrl() {
@@ -23,6 +21,12 @@ public class MavenLibraryActivity extends Activity {
 
     private ImageView getImageView(int resId) {
         return (ImageView) findViewById(resId);
+    }
+
+    void loadImage() {
+        Picasso.with(this)
+                .load(getImageUrl())
+                .into(getImageView(R.id.imageView));
     }
 
 }

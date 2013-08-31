@@ -1,5 +1,7 @@
 package com.twotoasters.hellostudio;
 
+import com.twotoasters.hellostudio.SimpleActivity;
+
 import org.fest.assertions.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +16,7 @@ public class SimpleActivityTest {
     SimpleActivity activity;
 
     @Before public void setUp() throws Exception {
-        SimpleActivity activity = new SimpleActivity();
-        activity.onCreate(null);
+        activity = Robolectric.buildActivity(SimpleActivity.class).create().get();
     }
 
     @Test public void testNotNull() {
@@ -26,4 +27,5 @@ public class SimpleActivityTest {
         long timestamp = activity.getCurrentTimestamp();
         Assertions.assertThat(timestamp).isGreaterThan(0);
     }
+
 }

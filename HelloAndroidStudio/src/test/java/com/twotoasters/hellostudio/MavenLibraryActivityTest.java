@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.view.View.MeasureSpec;
 import android.widget.ImageView;
 
+import com.twotoasters.hellostudio.MavenLibraryActivity;
+
 import org.fest.assertions.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,8 +21,7 @@ public class MavenLibraryActivityTest {
     MavenLibraryActivity activity;
 
     @Before public void setUp() throws Exception {
-        activity = new MavenLibraryActivity();
-        activity.onCreate(null);
+        activity = Robolectric.buildActivity(MavenLibraryActivity.class).get();
     }
 
     @Test public void testImageView() {
