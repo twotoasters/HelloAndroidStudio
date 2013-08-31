@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hello Android Studio</string>
+    <string name="hello_world">Hello Android Studio!</string>
+    <string name="activity_simple">Activity with nothing special</string>
+    <string name="activity_maven">Activity with Maven dependency</string>
+    <string name="activity_gradle">Activity with Gradle library dependency</string>
+    <string name="maven_lib">Image loaded using a Maven dependency</string>
+    <string name="gradle_ptr">Pull to refresh using a Gradle library project dependency</string>
+
+</resources>
