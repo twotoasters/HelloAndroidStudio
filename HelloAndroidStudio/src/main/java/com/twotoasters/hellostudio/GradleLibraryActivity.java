@@ -1,17 +1,9 @@
 package com.twotoasters.hellostudio;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.Arrays;
-import java.util.List;
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
@@ -31,7 +23,7 @@ public class GradleLibraryActivity extends Activity implements PullToRefreshAtta
     protected PullToRefreshAttacher setupPullToRefresh() {
         if (pullToRefreshAttacher == null) {
             // Create a PullToRefreshAttacher instance
-            PullToRefreshAttacher pullToRefreshAttacher = PullToRefreshAttacher.get(this);
+            pullToRefreshAttacher = PullToRefreshAttacher.get(this);
 
             // Retrieve the PullToRefreshLayout from the content view
             PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
