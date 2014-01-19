@@ -1,0 +1,70 @@
+buildscript {
+    repositories {
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    }
+    dependencies {
+        classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.1-SNAPSHOT'
+    }
+}
+
+apply plugin: 'android'
+apply plugin: 'android-test'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.0"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 19
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    buildTypes {
+        def BOOLEAN = "boolean"
+        def TRUE = "true"
+        def FALSE = "false"
+        def LOG_HTTP_REQUESTS = "LOG_HTTP_REQUESTS"
+        def REPORT_CRASHES = "REPORT_CRASHES"
+        def ENABLE_VIEW_SERVER = "ENABLE_VIEW_SERVER"
+        def ENABLE_SCALPEL = "ENABLE_SCALPEL"
+
+        debug {
+            buildConfigField BOOLEAN, LOG_HTTP_REQUESTS, TRUE
+            buildConfigField BOOLEAN, REPORT_CRASHES, FALSE
+            buildConfigField BOOLEAN, ENABLE_VIEW_SERVER, TRUE
+            buildConfigField BOOLEAN, ENABLE_SCALPEL, TRUE
+        }
+
+        hockeyApp {
+            buildConfigField BOOLEAN, LOG_HTTP_REQUESTS, TRUE
+            buildConfigField BOOLEAN, REPORT_CRASHES, TRUE
+            buildConfigField BOOLEAN, ENABLE_VIEW_SERVER, FALSE
+            buildConfigField BOOLEAN, ENABLE_SCALPEL, FALSE
+        }
+
+        release {
+            buildConfigField BOOLEAN, LOG_HTTP_REQUESTS, FALSE
+            buildConfigField BOOLEAN, REPORT_CRASHES, TRUE
+            buildConfigField BOOLEAN, ENABLE_VIEW_SERVER, FALSE
+            buildConfigField BOOLEAN, ENABLE_SCALPEL, FALSE
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:19.0.0'
+    compile 'com.squareup.picasso:picasso:1.1.1'
+    compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.7'
+    instrumentTestCompile 'com.squareup:fest-android:1.0.+'
+    instrumentTestCompile 'org.mockito:mockito-all:1.9.5'
+    instrumentTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
+    testCompile 'junit:junit:4.10'
+    testCompile 'org.robolectric:robolectric:2.1.+'
+    testCompile 'com.squareup:fest-android:1.0.+'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+}
