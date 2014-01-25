@@ -1,10 +1,8 @@
-Hello Android Studio
-====================
+# Hello Android Studio &nbsp;&nbsp; [![Build Status](https://travis-ci.org/twotoasters/HelloAndroidStudio.png?branch=master)](https://travis-ci.org/twotoasters/HelloAndroidStudio)
 
 A Gradle sample project that demonstrates usage of many common tasks.
 
-Sample Tasks
-------------
+## Sample Tasks
 
 - adding project dependency (.JAR) from maven central
 - adding a library project dependency (.AAR) from maven central
@@ -13,8 +11,7 @@ Sample Tasks
 - writing instrumentation tests
 - writing junit tests with robolectric
 
-Notes
------
+## Notes
 
 - Instrumentation tests are currently broken on Gradle 1.7
 - Instrumentation tests can be run with "gradle connectedInstrumentTest"
