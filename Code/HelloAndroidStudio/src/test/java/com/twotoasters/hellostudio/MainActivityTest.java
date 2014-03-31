@@ -22,7 +22,7 @@ public class MainActivityTest {
     @Before public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         activity = new MainActivity();
-        activity.onCreate(null);
+//        activity.onCreate(null);
     }
 
     @Test public void testNotNull() {

@@ -25,7 +25,8 @@ public class MainActivity extends Activity {
     private static final List<ActivityInfo> activitiesInfo = Arrays.asList(
             new ActivityInfo(SimpleActivity.class, R.string.activity_simple),
             new ActivityInfo(MavenLibraryActivity.class, R.string.activity_maven),
-            new ActivityInfo(GradleLibraryActivity.class, R.string.activity_gradle));
+            new ActivityInfo(GradleLibraryActivity.class, R.string.activity_gradle),
+            new ActivityInfo(EventBusActivity.class,R.string.activity_eventbus));
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

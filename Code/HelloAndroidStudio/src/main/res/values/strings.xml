@@ -6,7 +6,38 @@
     <string name="activity_simple">Activity with nothing special</string>
     <string name="activity_maven">Activity with Maven dependency</string>
     <string name="activity_gradle">Activity with Gradle library dependency</string>
+    <string name="activity_eventbus">Activity with eventbus(Otto)</string>
+    <string name="activity_eventbus_notification_text">Show notification</string>
+    <string name="activity_eventbus_crouton_text">Show crouton</string>
+    <string name="activity_eventbus_button_text">Post event</string>
+    <string name="activity_eventbus_edittext_hint">Enter Notification message</string>
+    <string name="activity_eventbus_event_text">Event from notification service received!</string>
     <string name="maven_lib">Image loaded using a Maven dependency</string>
     <string name="gradle_ptr">Pull to refresh using a Gradle library project dependency</string>
+
+    <string name="notification">Awesome Notification</string>
+
+    <!--  Buttons -->
+    <string name="ping">Ping!</string>
+    <string name="snooze">Snooze</string>
+    <string name="dismiss">Dismiss</string>
+
+    <!--  Text Views -->
+
+    <string name="ping_text">Set Seconds Until Ping</string>
+    <string name="done_snoozing">Done Snoozing.</string>
+    <string name="seconds_default">10</string>
+    <string name="reminder_label">Reminder Text</string>
+    <string name="reminder_text">Don\'t forget!</string>
+
+    <!--  Logging -->
+
+    <string name="snoozing">Snoozing!</string>
+    <string name="timer_start">Setting the timer</string>
+    <string name="sleep_error">Sleep failure</string>
+    <string name="timer_finished">Timer finished.</string>
+    <string name="event_from_notification">Event dispatched from notification.</string>
+    <string name="activity_eventbust_testMessage">Toasty!</string>
+
 
 </resources>

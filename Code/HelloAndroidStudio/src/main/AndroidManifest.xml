@@ -36,6 +36,16 @@
             android:name=".GradleLibraryActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".EventBusActivity"
+            android:label="@string/app_name" >
+        </activity>
+
+        <service
+            android:name=".notification.AwesomeNotificationService"
+            android:label="AwesomeNotficationService" android:enabled="true">
+        </service>
+
     </application>
 
 </manifest>
