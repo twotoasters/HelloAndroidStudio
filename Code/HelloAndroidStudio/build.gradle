@@ -9,6 +9,7 @@ buildscript {
 
 apply plugin: 'android'
 apply plugin: 'android-test'
+apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 19
@@ -55,6 +56,22 @@ android {
         }
     }
 }
+
+task checkstyle(type: Checkstyle) {
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+
+    def configProps = ['proj.module.dir': projectDir.absolutePath]
+    configProperties configProps
+
+    // empty classpath
+    classpath = files()
+}
+
+preBuild.dependsOn('checkstyle')
 
 dependencies {
     compile 'com.android.support:support-v4:19.1.0'
