@@ -14,5 +14,4 @@ public class SimpleActivity extends Activity {
     public long getCurrentTimestamp() {
         return System.currentTimeMillis();
     }
-    
 }

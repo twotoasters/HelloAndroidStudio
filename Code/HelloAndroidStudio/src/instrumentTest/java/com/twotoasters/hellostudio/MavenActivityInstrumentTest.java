@@ -8,8 +8,6 @@ import static android.test.ViewAsserts.assertOnScreen;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-import com.twotoasters.hellostudio.MavenLibraryActivity;
-
 public class MavenActivityInstrumentTest extends ActivityInstrumentationTestCase2<MavenLibraryActivity> {
 
     private MavenLibraryActivity activity;

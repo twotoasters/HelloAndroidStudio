@@ -10,6 +10,7 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 
 public class GradleLibraryActivity extends Activity implements PullToRefreshAttacher.OnRefreshListener {
 
+    private static final long SLEEP_TIME_MILLIS = 4000;
     private PullToRefreshAttacher pullToRefreshAttacher;
 
     @Override
@@ -44,7 +45,7 @@ public class GradleLibraryActivity extends Activity implements PullToRefreshAtta
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    Thread.sleep(4000);
+                    Thread.sleep(SLEEP_TIME_MILLIS);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -58,6 +59,6 @@ public class GradleLibraryActivity extends Activity implements PullToRefreshAtta
                 // Notify PullToRefreshAttacher that the refresh has finished
                 pullToRefreshAttacher.setRefreshComplete();
             }
-        }.execute();
+        } .execute();
     }
 }

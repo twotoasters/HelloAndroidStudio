@@ -8,7 +8,6 @@ buildscript {
 }
 
 apply plugin: 'android'
-apply plugin: 'android-test'
 apply plugin: 'checkstyle'
 
 android {
@@ -55,6 +54,26 @@ android {
             buildConfigField BOOLEAN, ENABLE_SCALPEL, FALSE
         }
     }
+
+    sourceSets {
+        androidTest.setRoot('src/test')
+    }
+}
+
+apply plugin: 'android-test'
+
+dependencies {
+    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.squareup.picasso:picasso:1.1.1'
+    compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.7'
+    androidTestCompile 'junit:junit:4.10'
+    androidTestCompile 'com.squareup:fest-android:1.0.+'
+    androidTestCompile 'org.mockito:mockito-all:1.9.5'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
+    testCompile 'junit:junit:4.10'
+    testCompile 'org.robolectric:robolectric:2.1.+'
+    testCompile 'com.squareup:fest-android:1.0.+'
+    testCompile 'org.mockito:mockito-all:1.9.5'
 }
 
 task checkstyle(type: Checkstyle) {
@@ -72,16 +91,3 @@ task checkstyle(type: Checkstyle) {
 }
 
 preBuild.dependsOn('checkstyle')
-
-dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
-    compile 'com.squareup.picasso:picasso:1.1.1'
-    compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.7'
-    androidTestCompile 'com.squareup:fest-android:1.0.+'
-    androidTestCompile 'org.mockito:mockito-all:1.9.5'
-    androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
-    testCompile 'junit:junit:4.10'
-    testCompile 'org.robolectric:robolectric:2.1.+'
-    testCompile 'com.squareup:fest-android:1.0.+'
-    testCompile 'org.mockito:mockito-all:1.9.5'
-}
