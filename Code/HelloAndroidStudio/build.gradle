@@ -8,7 +8,7 @@ buildscript {
 }
 
 apply plugin: 'android'
-apply plugin: 'android-test'
+apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 19
@@ -54,17 +54,40 @@ android {
             buildConfigField BOOLEAN, ENABLE_SCALPEL, FALSE
         }
     }
+
+    sourceSets {
+        androidTest.setRoot('src/test')
+    }
 }
 
+apply plugin: 'android-test'
+
 dependencies {
-    compile 'com.android.support:support-v4:19.0.0'
+    compile 'com.android.support:support-v4:19.1.0'
     compile 'com.squareup.picasso:picasso:1.1.1'
     compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.7'
-    instrumentTestCompile 'com.squareup:fest-android:1.0.+'
-    instrumentTestCompile 'org.mockito:mockito-all:1.9.5'
-    instrumentTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
+    androidTestCompile 'junit:junit:4.10'
+    androidTestCompile 'com.squareup:fest-android:1.0.+'
+    androidTestCompile 'org.mockito:mockito-all:1.9.5'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
     testCompile 'junit:junit:4.10'
     testCompile 'org.robolectric:robolectric:2.1.+'
     testCompile 'com.squareup:fest-android:1.0.+'
     testCompile 'org.mockito:mockito-all:1.9.5'
 }
+
+task checkstyle(type: Checkstyle) {
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+
+    def configProps = ['proj.module.dir': projectDir.absolutePath]
+    configProperties configProps
+
+    // empty classpath
+    classpath = files()
+}
+
+preBuild.dependsOn('checkstyle')

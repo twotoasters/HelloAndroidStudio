@@ -1,16 +1,9 @@
 package com.twotoasters.hellostudio;
 
-import android.app.Activity;
-import android.view.View.MeasureSpec;
-import android.widget.ImageView;
-
-import com.twotoasters.hellostudio.MainActivity;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.Robolectric;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
