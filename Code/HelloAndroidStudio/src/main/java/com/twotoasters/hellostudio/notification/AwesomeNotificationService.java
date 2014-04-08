@@ -36,7 +36,7 @@ public class AwesomeNotificationService extends IntentService {
                 getSystemService(NOTIFICATION_SERVICE);
 
         String action = intent.getAction();
-        switch (action){
+        switch (action) {
             case CommonConstants.ACTION_PING:
                 nm.cancel(CommonConstants.NOTIFICATION_ID);
                 issueNotification(usersMessage);
@@ -48,6 +48,8 @@ public class AwesomeNotificationService extends IntentService {
                 break;
             case CommonConstants.ACTION_DISMISS:
                 nm.cancel(CommonConstants.NOTIFICATION_ID);
+                break;
+            default:
                 break;
         }
     }

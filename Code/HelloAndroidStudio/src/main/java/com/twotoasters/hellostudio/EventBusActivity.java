@@ -9,8 +9,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.lang.Override;
-
 import com.squareup.otto.Subscribe;
 import com.twotoasters.hellostudio.event.FromNotificationEvent;
 import com.twotoasters.hellostudio.event.ShowCroutonEvent;
@@ -87,9 +85,9 @@ public class EventBusActivity extends Activity {
                 .setAction(CommonConstants.ACTION_PING));
     }
 
-    /*************************************************************
-     * Begin EventBus event receivers
-     **************************************************************/
+    ////////////////////////////////////////////////////////////////
+    // Begin EventBus event receivers
+    ////////////////////////////////////////////////////////////////
 
     @Subscribe
     public void onShowToast(ShowCroutonEvent showCroutonEvent) {

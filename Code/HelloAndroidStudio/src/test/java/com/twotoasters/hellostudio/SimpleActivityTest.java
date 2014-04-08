@@ -1,7 +1,5 @@
 package com.twotoasters.hellostudio;
 
-import com.twotoasters.hellostudio.SimpleActivity;
-
 import org.fest.assertions.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;

@@ -6,4 +6,4 @@ package com.twotoasters.hellostudio.event;
  *
  *    Event to be fired when user taps "Post Event" in Notification
  */
-public class FromNotificationEvent {}
+public class FromNotificationEvent { }

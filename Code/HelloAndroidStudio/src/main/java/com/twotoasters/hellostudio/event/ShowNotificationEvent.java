@@ -6,8 +6,8 @@ package com.twotoasters.hellostudio.event;
 public class ShowNotificationEvent {
     String message;
 
-    public ShowNotificationEvent(String message){
-       this.message=message;
+    public ShowNotificationEvent(String message) {
+       this.message = message;
     }
 
     public String getMessage() {

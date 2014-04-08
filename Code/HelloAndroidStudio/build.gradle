@@ -5,6 +5,7 @@ buildscript {
 
 
     dependencies {
+        classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.1-SNAPSHOT'
         classpath 'com.github.jcandksolutions.gradle:android-unit-test:1.0.+'
     }
 }
@@ -59,23 +60,21 @@ android {
     sourceSets {
         androidTest.setRoot('src/test')
     }
-
 }
 
-
-
-
-apply plugin: 'android-unit-test'
-
+apply plugin: 'android-test'
 
 dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.squareup.picasso:picasso:1.1.1'
     compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.7'
-    compile 'de.keyboardsurfer.android.widget:crouton:1.8.3'
     compile 'com.squareup:otto:1.3.+'
-    androidTestCompile 'com.squareup:fest-android:1.0.+'
+    compile('de.keyboardsurfer.android.widget:crouton:1.8.4') {
+        // exclusion is not neccessary, but generally a good idea.
+        exclude group: 'com.google.android', module: 'support-v4'
+    }
     androidTestCompile 'junit:junit:4.10'
+    androidTestCompile 'com.squareup:fest-android:1.0.+'
     androidTestCompile 'org.mockito:mockito-all:1.9.5'
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
     androidTestCompile 'org.robolectric:robolectric:2.2'
@@ -84,3 +83,22 @@ dependencies {
     testCompile 'org.mockito:mockito-all:1.9.5'
     testCompile 'org.robolectric:robolectric:2.2'
 }
+
+apply plugin: 'checkstyle'
+
+task checkstyle(type: Checkstyle) {
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+
+    def configProps = ['proj.module.dir': projectDir.absolutePath]
+    configProperties configProps
+
+    // empty classpath
+    classpath = files()
+}
+
+
+preBuild.dependsOn('checkstyle')

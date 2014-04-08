@@ -1,22 +1,20 @@
 package com.twotoasters.hellostudio;
 
-import android.app.Activity;
-import android.view.View.MeasureSpec;
 import android.widget.ImageView;
-
-import com.twotoasters.hellostudio.MavenLibraryActivity;
+import android.view.View.MeasureSpec;
 
 import org.fest.assertions.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 
 import static org.fest.assertions.api.ANDROID.assertThat;
 
 @RunWith(RobolectricGradleTestRunner.class)
 public class MavenLibraryActivityTest {
+
+    private static final int MEASURESPEC_SIZE = 150;
 
     MavenLibraryActivity activity;
 
@@ -27,13 +25,13 @@ public class MavenLibraryActivityTest {
     @Test public void testImageView() {
         ImageView view = new ImageView(Robolectric.application);
 
-        int width = MeasureSpec.makeMeasureSpec(150, MeasureSpec.EXACTLY);
-        int height = MeasureSpec.makeMeasureSpec(150, MeasureSpec.EXACTLY);
+        int width = MeasureSpec.makeMeasureSpec(MEASURESPEC_SIZE, MeasureSpec.EXACTLY);
+        int height = MeasureSpec.makeMeasureSpec(MEASURESPEC_SIZE, MeasureSpec.EXACTLY);
 
         view.measure(width, height);
 
-        assertThat(view).hasMeasuredWidth(150);
-        assertThat(view).hasMeasuredHeight(150);
+        assertThat(view).hasMeasuredWidth(MEASURESPEC_SIZE);
+        assertThat(view).hasMeasuredHeight(MEASURESPEC_SIZE);
     }
 
     @Test public void testGetImageUrl() {
